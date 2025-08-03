@@ -1,0 +1,52 @@
+import { useDelete, useNotify, useRefresh, Confirm, Button } from 'react-admin';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
+import { SxProps } from '@mui/material';
+
+const DeleteWithConfirmButton = ({ record, sx }: { record: any; sx?: SxProps }) => {
+  const [open, setOpen] = useState(false);
+  const notify = useNotify();
+  const refresh = useRefresh();
+
+  const [deleteOne, { isLoading }] = useDelete('materials', { id: record.id }, {
+    onSuccess: () => {
+      notify('Deleted successfully');
+      setOpen(false);
+      refresh();
+    },
+    onError: () => {
+      notify('Error: could not delete', { type: 'error' });
+    },
+  });
+
+  const handleClick = (e) => {
+    e.stopPropagation(); // 阻止点击事件向上冒泡
+    setOpen(true);
+  };
+
+  const handleConfirm = () => deleteOne();
+  const handleCancel = () => setOpen(false);
+
+  return (
+    <>
+      <Button
+        sx={{ textTransform: 'capitalize', ...sx }}
+        onClick={handleClick}
+        disabled={isLoading}
+      >
+        <DeleteIcon />
+        Delete
+      </Button>
+      <Confirm
+        isOpen={open}
+        loading={isLoading}
+        title="Confirm Delete"
+        content="Are you sure you want to delete this item?"
+        onConfirm={handleConfirm}
+        onClose={handleCancel}
+      />
+    </>
+  );
+};
+
+export default DeleteWithConfirmButton;
