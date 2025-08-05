@@ -2,11 +2,16 @@ import * as React from "react";
 import { Button } from "@mui/material";
 import UploadIcon from "@mui/icons-material/Upload";
 
-const UploadButton = () => {
-  const fileInputRef = React.useRef();
+interface UploadButtonProps {
+  onSuccess?: () => void;
+  resource?: "materials" | "bom";
+}
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
+const UploadButton: React.FC<UploadButtonProps> = ({ onSuccess, resource = "materials" }) => {
+  const fileInputRef = React.useRef < HTMLInputElement > (null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (!file) return;
 
     const formData = new FormData();
@@ -14,7 +19,7 @@ const UploadButton = () => {
 
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:5180/api/materials/import", {
+    const res = await fetch(`http://localhost:5180/api/${resource}/import`, {
       method: "POST",
       body: formData,
       headers: {
@@ -24,7 +29,9 @@ const UploadButton = () => {
 
     if (res.ok) {
       alert("上传成功");
-      window.location.reload(); // 或触发 react-admin 的刷新
+      if (onSuccess) {
+        onSuccess();
+      }
     } else {
       const error = await res.text();
       alert("上传失败: " + error);
@@ -34,11 +41,11 @@ const UploadButton = () => {
   return (
     <>
       <Button
-        variant="text" // 保持与 ExportButton 一致
+        variant="text"
         size="small"
-        sx={{ maxHeight: 27.5, textTransform: 'capitalize' }} // 保证与 ExportButton 高度一致
+        sx={{ maxHeight: 27.5, textTransform: 'capitalize' }}
         startIcon={<UploadIcon />}
-        onClick={() => fileInputRef.current.click()}
+        onClick={() => fileInputRef.current?.click()}
       >
         上传 Csv
       </Button>

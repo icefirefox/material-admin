@@ -15,13 +15,13 @@ const BomCreate = () => (
 
       {/* <TextInput source="productId" label="Product ID" validate={required()} /> */}
       <TextInput className="custom-text-input" source="version" />
+      <TextInput source="stage" label="阶段" fullWidth />
       <TextInput type="number" source="quantity" />
       <TextInput className="custom-text-input" source="unit" />
 
       <ArrayInput source="items" label="原料列表">
         <SimpleFormIterator inline fullWidth>
-          <TextInput className="custom-text-input" source="materialId" label="原料ID" />
-          <TextInput className="custom-text-input" source="materialName" label="原料名" />
+          <FinishedGoodsSelectInput sx={{ mt: 0 }} type="RawMaterial" />
           <TextInput type="number" source="quantity" label="数量" />
           <TextInput className="custom-text-input" source="unit" label="单位" />
         </SimpleFormIterator>

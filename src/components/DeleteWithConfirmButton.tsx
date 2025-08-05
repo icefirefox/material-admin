@@ -3,12 +3,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { SxProps } from '@mui/material';
 
-const DeleteWithConfirmButton = ({ record, sx }: { record: any; sx?: SxProps }) => {
+interface DeleteWithConfirmButtonProps {
+  record: any;
+  resource: string; // 新增资源参数
+  sx?: SxProps;
+}
+
+const DeleteWithConfirmButton = ({ record, resource, sx }: DeleteWithConfirmButtonProps) => {
   const [open, setOpen] = useState(false);
   const notify = useNotify();
   const refresh = useRefresh();
 
-  const [deleteOne, { isLoading }] = useDelete('materials', { id: record.id }, {
+  const [deleteOne, { isLoading }] = useDelete(resource, { id: record.id }, {
     onSuccess: () => {
       notify('Deleted successfully');
       setOpen(false);
@@ -20,7 +26,7 @@ const DeleteWithConfirmButton = ({ record, sx }: { record: any; sx?: SxProps }) 
   });
 
   const handleClick = (e) => {
-    e.stopPropagation(); // 阻止点击事件向上冒泡
+    e.stopPropagation();
     setOpen(true);
   };
 

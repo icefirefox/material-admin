@@ -3,14 +3,14 @@ import {
   CreateButton, useRecordContext, FunctionField,
   editFieldTypes,
 } from "react-admin";
-import UploadButton from "../../components/UploadButton";
+import UploadButton from "../../components/UploadButton.tsx";
 import DeleteWithConfirmButton from "../../components/DeleteWithConfirmButton.tsx";
 import Box from "@mui/material/Box";
 import { ellipsisCell } from '../../styles/ellipsis.ts';
 
 const ListActions = () => (
   <TopToolbar>
-    <UploadButton onSuccess={() => window.location.reload()} />
+    <UploadButton onSuccess={() => window.location.reload()} source="materials" />
     <ExportButton sx={{ textTransform: 'capitalize' }} />
     <CreateButton sx={{ textTransform: 'capitalize' }} />
   </TopToolbar>
@@ -35,7 +35,7 @@ const ActionButtons = () => {
           marginRight: 0, // 默认是8px，可以缩小为4px或者更小
         }, textTransform: 'capitalize'
       }} />
-      <DeleteWithConfirmButton record={record} sx={{
+      <DeleteWithConfirmButton record={record} resource="materials" sx={{
         '& .MuiButton-startIcon': {
           marginRight: 0, // 默认是8px，可以缩小为4px或者更小
         }

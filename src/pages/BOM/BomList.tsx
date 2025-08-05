@@ -11,9 +11,13 @@ import {
 import { Card, CardContent } from '@mui/material';
 import DeleteWithConfirmButton from "../../components/DeleteWithConfirmButton.tsx";
 import { ellipsisCell } from '../../styles/ellipsis.ts';
+import UploadButton from '../../components/UploadButton.tsx'; // Add this import
+import { ExportButton } from 'react-admin';
 
 const ListActions = () => (
   <TopToolbar>
+    <UploadButton resource="bom" onSuccess={() => window.location.reload()} />
+    <ExportButton sx={{ textTransform: 'capitalize' }} />
     <CreateButton label="新建 BOM" />
   </TopToolbar>
 );
@@ -36,7 +40,7 @@ const ActionButtons = ({ record }: { record?: any }) => {
           marginRight: 0, // 默认是8px，可以缩小为4px或者更小
         }, textTransform: 'capitalize'
       }} />
-      <DeleteWithConfirmButton record={record} sx={{
+      <DeleteWithConfirmButton record={record} resource="bom" sx={{
         '& .MuiButton-startIcon': {
           marginRight: 0, // 默认是8px，可以缩小为4px或者更小
         }
@@ -65,13 +69,14 @@ const BomList = () => (
               }}
 
             >
-              <TextField source="bomCode" label="BOM 编号" />
+              <TextField source="id" label="BOM id" />
+              <TextField source="version" label="版本" />
               <TextField source="stage" label="阶段" />
 
               {/* <ReferenceField source="productId" reference="materials" label="产品">
                 <TextField source="name" />
               </ReferenceField> */}
-              <TextField source="productName" label="产品" />
+              <TextField source="product.name" label="产品" />
 
               <FunctionField
                 label="操作"

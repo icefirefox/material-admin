@@ -5,6 +5,7 @@ import {
   TextInput,
   SelectInput,
 } from "react-admin";
+import Box from "@mui/material/Box";
 
 
 const typeChoices = [
@@ -15,21 +16,50 @@ const typeChoices = [
 const MaterialCreate: React.FC = () => (
   <Create>
     <SimpleForm>
-      <TextInput source="productId" label="ProductId" />
-      <TextInput source="name" label="Name" />
-      <SelectInput source="type" label="Type" choices={typeChoices} />
-      <TextInput source="unit" label="Unit" />
-      <TextInput type="number" source="minStock" label="Min Stock" />
-      <TextInput source="stageId" />
-      <TextInput source="stageName" />
-      <TextInput source="product" />
-      <TextInput source="category" />
-      <TextInput source="description" />
-      <TextInput source="supplier" />
-      <TextInput type="number" source="perBlend" />
-      <TextInput type="number" source="percent2" />
-      <TextInput type="number" source="totalKg2" />
-
+      <Box display="flex" flexWrap="wrap" gap={2}>
+        <Box flex="1 1 48%">
+          <TextInput source="productId" label="ProductId" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="name" label="Name" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <SelectInput sx={{ marginTop: 0 }} source="type" label="Type" choices={typeChoices} fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="unit" label="Unit" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput type="number" source="minStock" label="Min Stock" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="stageId" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="stageName" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="product" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="category" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="description" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput source="supplier" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput type="number" source="perBlend" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput type="number" source="percent2" fullWidth />
+        </Box>
+        <Box flex="1 1 48%">
+          <TextInput type="number" source="totalKg2" fullWidth />
+        </Box>
+      </Box>
     </SimpleForm>
   </Create>
 );

@@ -1,11 +1,11 @@
 import { SelectInput, useGetList, required } from 'react-admin';
-interface FinishedGoodsSelectInputProps {
+interface RawMaterialSelectInputProps {
   type?: string;
   sx?: object;
   source?: string;
   label?: string;
 }
-const FinishedGoodsSelectInput: React.FC<FinishedGoodsSelectInputProps> = ({ type = 'FinishedGood', sx, source = 'productId',
+const RawMaterialSelectInput: React.FC<RawMaterialSelectInputProps> = ({ type = 'RawMaterial', sx, source = 'material',
   label = '产品', }) => {
   const { data, isLoading, error } = useGetList('materials', {
     pagination: { page: 1, perPage: 1000 },
@@ -17,8 +17,11 @@ const FinishedGoodsSelectInput: React.FC<FinishedGoodsSelectInputProps> = ({ typ
   if (error) return <span>Error loading product options</span>;
 
   const choices = (data ?? []).map(item => ({
-    id: item.productId, // id 就是 productId
-    name: `${item.productId} - ${item.name}`, // 显示格式可改
+    id: item.productId,
+    name: `${item.productId} - ${item.name}`,
+    type: item.type,
+    unit: item.unit,
+    raw: item, // 保留原始对象
   }));
 
   return (
@@ -26,10 +29,15 @@ const FinishedGoodsSelectInput: React.FC<FinishedGoodsSelectInputProps> = ({ typ
       source={source}
       label={label}
       choices={choices}
+      optionValue="id"
+      optionText="name"
       validate={[required()]}
       sx={sx}
+      parse={id => choices.find(c => c.id === id)?.raw}
+      format={obj => obj?.productId ?? ''}
+
     />
   );
 };
 
-export default FinishedGoodsSelectInput;
+export default RawMaterialSelectInput;
