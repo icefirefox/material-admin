@@ -13,9 +13,12 @@ import DeleteWithConfirmButton from "../../components/DeleteWithConfirmButton.ts
 import { ellipsisCell } from '../../styles/ellipsis.ts';
 import UploadButton from '../../components/UploadButton.tsx'; // Add this import
 import { ExportButton } from 'react-admin';
+import TemplateDownloadButton from '../../components/TemplateDownloadButton.tsx';
 
 const ListActions = () => (
   <TopToolbar>
+    <TemplateDownloadButton href="/templates/bom_template.csv" />
+
     <UploadButton resource="bom" onSuccess={() => window.location.reload()} />
     <ExportButton sx={{ textTransform: 'capitalize' }} />
     <CreateButton label="新建 BOM" />
@@ -53,7 +56,8 @@ const BomList = () => (
   <div style={{ padding: '24px' }}>
     <Card elevation={3} sx={{ borderRadius: 3, padding: 2 }}>
       <CardContent>
-        <List title="BOM 列表" actions={<ListActions />} perPage={25}>
+        <List empty={false}
+          title="BOM 列表" actions={<ListActions />} perPage={25}>
           <div style={{ overflowX: 'auto' }}>
             <Datagrid rowClick="edit"
               sx={{

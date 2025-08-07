@@ -20,8 +20,12 @@ const DeleteWithConfirmButton = ({ record, resource, sx }: DeleteWithConfirmButt
       setOpen(false);
       refresh();
     },
-    onError: () => {
-      notify('Error: could not delete', { type: 'error' });
+    onError: (error: any) => {
+      if (error?.status === 409) {
+        notify('该物料已被其他数据引用，无法删除。', { type: 'error' });
+      } else {
+        notify('Error: could not delete', { type: 'error' });
+      }
     },
   });
 

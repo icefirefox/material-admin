@@ -8,7 +8,7 @@ interface UploadButtonProps {
 }
 
 const UploadButton: React.FC<UploadButtonProps> = ({ onSuccess, resource = "materials" }) => {
-  const fileInputRef = React.useRef < HTMLInputElement > (null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

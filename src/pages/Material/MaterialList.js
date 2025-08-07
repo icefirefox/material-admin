@@ -1,15 +1,31 @@
 import {
   List, Datagrid, TextField, TopToolbar, ExportButton, EditButton,
-  CreateButton, useRecordContext, FunctionField,
+  CreateButton, useRecordContext, FunctionField, TextInput,
   editFieldTypes,
 } from "react-admin";
 import UploadButton from "../../components/UploadButton.tsx";
 import DeleteWithConfirmButton from "../../components/DeleteWithConfirmButton.tsx";
 import Box from "@mui/material/Box";
 import { ellipsisCell } from '../../styles/ellipsis.ts';
+import TemplateDownloadButton from "../../components/TemplateDownloadButton.tsx";
+const materialFilters = [
+  <TextInput sx={{
+    '& .MuiInputBase-input': {
+      height: 40,      // 输入框高度
+      padding: '6px 12px',
+      fontSize: 14,
+      lineHeight: '40px', // 使文字垂直居中
+    },
+    minHeight: 36,      // 整体高度
+    marginBottom: '16px',
+  }} label="Search For Material Code" source="productId" alwaysOn resettable />,
 
+];
 const ListActions = () => (
-  <TopToolbar>
+  <TopToolbar sx={{
+    marginBottom: '16px',
+  }}>
+    <TemplateDownloadButton href="/templates/material_template.csv" />
     <UploadButton onSuccess={() => window.location.reload()} source="materials" />
     <ExportButton sx={{ textTransform: 'capitalize' }} />
     <CreateButton sx={{ textTransform: 'capitalize' }} />
@@ -48,6 +64,8 @@ const ActionButtons = () => {
 const MaterialList = (props) => (
 
   <List
+    empty={false}
+    filters={materialFilters}
     {...props} actions={<ListActions />}>
 
     <Box sx={{
@@ -64,27 +82,27 @@ const MaterialList = (props) => (
             textAlign: 'center',
           },
         }}>
-          <TextField source="id" />
-          <TextField source="productId" label="ProductId" />
+          {/* <TextField source="id" /> */}
+          <TextField source="productId" sx={ellipsisCell} label="Material Code" />
           <TextField source="name" />
           <FunctionField
             label="Type"
             render={record =>
-              record.type === "FinishedGood" ? "成品" :
-                record.type === "RawMaterial" ? "原料" : "-"
+              record.type === "FinishedGood" ? "FinishedGood" :
+                record.type === "RawMaterial" ? "RawMaterial" : "-"
             }
           />
           <TextField source="unit" />
-          <TextField source="minStock" sx={ellipsisCell} />
-          <TextField source="stageId" />
-          <TextField sx={ellipsisCell} source="stageName" />
-          <TextField source="product" />
-          <TextField source="category" />
+          <TextField source="packType" label="Pack Type" sx={ellipsisCell} />
+          <TextField source="size" />
+          {/* <TextField sx={ellipsisCell} source="stageName" />  */}
+          {/* <TextField source="product" />
+          <TextField source="category" /> */}
           <TextField source="description" />
           <TextField source="supplier" />
-          <TextField source="perBlend" sx={ellipsisCell} />
-          <TextField source="percent2" />
-          <TextField source="totalKg2" sx={ellipsisCell} />
+          {/* <TextField source="perBlend" sx={ellipsisCell} />
+          <TextField label="proportion(%)" source="percent2" />
+          <TextField label="weight(g)" source="totalKg2" sx={ellipsisCell} /> */}
 
           <FunctionField
             label="操作"

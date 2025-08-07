@@ -67,15 +67,17 @@ const App = () => (
       </CustomLayoutWrapper>
     )} create={MaterialCreate}
       edit={MaterialEdit} options={{ label: "Items" }} />
+    <Resource icon={BuildIcon} name="BOM"
+      list={BomList}
+      create={BomCreate}
+      edit={BomEdit} />
+
     <Resource icon={WarehouseIcon} name="Stock" list={ListGuesser} />
     <Resource icon={ReceiptLongIcon} name="Sales" options={{ label: "Sales Order" }} list={ListGuesser} />
     <Resource icon={AssignmentIcon} name="MaterialRequest" options={{ label: "Material Request" }} list={ListGuesser} />
     <Resource icon={BusinessIcon} name="Supplier" options={{ label: "Supplier" }} list={ListGuesser} />
 
-    <Resource icon={BuildIcon} name="BOM"
-      list={BomList}
-      create={BomCreate}
-      edit={BomEdit} />
+
 
   </Admin>
 );

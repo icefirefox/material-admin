@@ -3,7 +3,8 @@ import {
   Edit,
   SimpleForm,
   TextInput,
-  SelectInput
+  SelectInput,
+  required,
 } from "react-admin";
 import { Box } from "@mui/material";
 const typeChoices = [
@@ -16,24 +17,30 @@ const MaterialEdit: React.FC = () => (
     <SimpleForm >
       <Box display="flex" flexWrap="wrap" gap={1}>
         <Box flex="1 1 48%">
-          <TextInput source="productId" label="ProductId" fullWidth margin="dense" />
+          <TextInput source="productId" label="Material Code" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
           <TextInput source="name" label="Name" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
-          <SelectInput source="type" label="Type" choices={typeChoices} fullWidth margin="dense" />
+          <SelectInput
+            source="type"
+            label="Type"
+            choices={typeChoices}
+            fullWidth
+            validate={[required()]}
+          />
         </Box>
         <Box flex="1 1 48%">
           <TextInput source="unit" label="Unit" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
-          <TextInput type="number" source="minStock" label="Min Stock" fullWidth margin="dense" />
+          <TextInput source="size" label="Size" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
-          <TextInput source="stageId" label="Stage ID" fullWidth margin="dense" />
+          <TextInput source="packType" label="pack type" fullWidth margin="dense" />
         </Box>
-        <Box flex="1 1 48%">
+        {/* <Box flex="1 1 48%">
           <TextInput source="stageName" label="Stage Name" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
@@ -41,22 +48,22 @@ const MaterialEdit: React.FC = () => (
         </Box>
         <Box flex="1 1 48%">
           <TextInput source="category" label="Category" fullWidth margin="dense" />
-        </Box>
+        </Box> */}
         <Box flex="1 1 48%">
           <TextInput source="description" label="Description" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
           <TextInput source="supplier" label="Supplier" fullWidth margin="dense" />
         </Box>
-        <Box flex="1 1 48%">
+        {/* <Box flex="1 1 48%">
           <TextInput type="number" source="perBlend" label="Per Blend" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
-          <TextInput type="number" source="percent2" label="2%" fullWidth margin="dense" />
+          <TextInput label="proportion(%)" type="number" source="percent2" fullWidth margin="dense" />
         </Box>
         <Box flex="1 1 48%">
-          <TextInput type="number" source="totalKg2" label="2% total kg" fullWidth margin="dense" />
-        </Box>
+          <TextInput label="weight(g)" type="number" source="totalKg2" fullWidth margin="dense" />
+        </Box> */}
       </Box>
     </SimpleForm>
   </Edit>
