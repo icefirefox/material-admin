@@ -75,7 +75,7 @@ const BomList = () => (
             >
               <TextField source="id" label="BOM id" />
               <TextField source="version" label="版本" />
-              <TextField source="stage" label="阶段" />
+              {/* <TextField source="stage" label="阶段" /> */}
 
               {/* <ReferenceField source="productId" reference="materials" label="产品">
                 <TextField source="name" />

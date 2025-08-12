@@ -18,7 +18,7 @@ import CustomLayoutWrapper from './components/CustomLayoutWrapper.tsx';
 import BomList from "./pages/BOM/BomList.tsx";
 import BomCreate from "./pages/BOM/BomCreate.tsx";
 import BomEdit from "./pages/BOM/BomEdit.tsx";
-
+import './App.css';
 import theme from "./theme";
 const fetchJsonWithAuth = (url, options = {}) => {
   if (!options.headers) {

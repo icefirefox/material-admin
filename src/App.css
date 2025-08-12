@@ -32,7 +32,32 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.RaMenuItemLink-active {
+  background-color: #e0e0e0 !important;
+  color: #333333 !important;
+}
+
+.MuiDrawer-paper {
+  background-color: #ffffff !important;
+}
+
+.css-c1bgk0-RaLogin-root .RaLogin-card {
+  margin-top: 10em !important;
+  /* 例如改成10em */
+}
+
+.RaLogin-root {
+  display: flex;
+  align-items: center;
+  /* 垂直居中 */
+  justify-content: center;
+  /* 水平居中 */
+  height: 100vh;
+  /* 视口高度 */
 }

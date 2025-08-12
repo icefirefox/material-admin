@@ -29,6 +29,13 @@ const erpNextTheme = createTheme({
     borderRadius: 12,
   },
   components: {
+    RaLoginCard: {
+      styleOverrides: {
+        root: {
+          marginTop: '150px',
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
@@ -44,6 +51,7 @@ const erpNextTheme = createTheme({
         root: {
           boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
           borderRadius: 12,
+          backgroundColor: '#ffffff',
         },
       },
     },
@@ -128,7 +136,25 @@ const erpNextTheme = createTheme({
 
       },
     },
-
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: '#333333', // 全局字体颜色
+        },
+        noWrap: {
+          color: '#333333', // noWrap 版本文字颜色
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#ffffff',  // 你想要的菜单背景色
+          // 这里可以设置其他样式，比如去掉阴影
+          boxShadow: 'none',
+        },
+      },
+    },
     // 新增全局样式覆盖
     MuiCssBaseline: {
       styleOverrides: {

@@ -51,7 +51,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({ onSuccess, resource = "mate
       </Button>
       <input
         type="file"
-        accept=".csv"
+        accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         ref={fileInputRef}
         onChange={handleFileChange}
         style={{ display: "none" }}
