@@ -123,7 +123,7 @@ const BomCreate = () => {
             />
             <TextInput sx={{ mt: 1 }} source="quantity" label="数量" />
             <UnitInput source="material.unit" />
-            <TextInput sx={{ mt: 0.7 }} label="proportion(%)" source="proportion" />
+            <TextInput sx={{ mt: 1 }} label="proportion(%)" source="proportion" />
           </SimpleFormIterator>
         </ArrayInput>
       </SimpleForm>

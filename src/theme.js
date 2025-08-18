@@ -26,16 +26,10 @@ const erpNextTheme = createTheme({
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 4,
   },
   components: {
-    RaLoginCard: {
-      styleOverrides: {
-        root: {
-          marginTop: '150px',
-        },
-      },
-    },
+
     MuiAppBar: {
       styleOverrides: {
         root: {
@@ -50,7 +44,7 @@ const erpNextTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-          borderRadius: 12,
+          borderRadius: 6,
           backgroundColor: '#ffffff',
         },
       },
@@ -58,7 +52,8 @@ const erpNextTheme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          backgroundColor: '#ffffff !important',
+          borderRadius: 6,
           boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
         },
       },

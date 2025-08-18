@@ -27,8 +27,18 @@ const ListActions = () => (
   }}>
     <TemplateDownloadButton href="/templates/material_template.csv" />
     <UploadButton onSuccess={() => window.location.reload()} source="materials" />
-    <ExportButton sx={{ textTransform: 'capitalize' }} />
-    <CreateButton sx={{ textTransform: 'capitalize' }} />
+    <ExportButton sx={{
+      textTransform: 'capitalize', top: '-5px', '& span': {
+
+        marginRight: '2px',
+      }
+    }} />
+    <CreateButton sx={{
+      textTransform: 'capitalize', top: '-5px', '& span': {
+
+        marginRight: '2px',
+      }
+    }} />
   </TopToolbar>
 );
 

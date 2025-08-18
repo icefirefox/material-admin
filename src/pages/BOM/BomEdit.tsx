@@ -7,15 +7,24 @@ import {
   required,
   useDataProvider,
 } from 'react-admin';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import ItemSelectInput from '../../components/ItemSelectInput.tsx';
 import UnitInput from '../../components/UnitInput.tsx';
 import { heIL } from '@mui/material/locale';
+import { Button } from 'react-admin';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EditIcon from '@mui/icons-material/Edit';
+import { useNotify, useRedirect, useRefresh } from 'react-admin';
 
 const BomEdit = () => {
   const dataProvider = useDataProvider();
-
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const refresh = useRefresh();
+  const notify = useNotify();
+  const redirect = useRedirect();
   // 统一请求 FinishedGood 产品
   const [finishedGoods, setFinishedGoods] = useState<any[]>([]);
   const [rawMaterials, setRawMaterials] = useState<any[]>([]);
@@ -56,7 +65,21 @@ const BomEdit = () => {
     <div style={{ padding: '24px' }}>
       <Card elevation={3} sx={{ borderRadius: 3 }}>
         <CardContent>
-          <Typography variant="h6" gutterBottom>
+          {/* 顶部按钮区 */}
+          <Stack direction="row" spacing={2} sx={{ mb: 2, margin: 2 }}>
+            <Button
+              label="返回列表"
+              onClick={() => navigate('/bom')}
+              startIcon={<ArrowBackIcon />}
+            />
+            <Button
+              label="Chart"
+              onClick={() => navigate(`/bom/${id}/chart`)}
+              startIcon={<EditIcon />}
+              color="primary"
+            />
+          </Stack>
+          <Typography sx={{ marginLeft: 2.5 }} variant="h6" gutterBottom>
             编辑 BOM
           </Typography>
 
@@ -81,6 +104,12 @@ const BomEdit = () => {
                     },
                   })) ?? [],
               };
+            }}
+            onSuccess={() => {
+              notify('保存成功', { type: 'success' });
+              redirect('/bom');
+              setTimeout(() => refresh(), 100); // 跳转后刷新
+
             }}
           >
             <SimpleForm sx={{ width: '100%' }}>

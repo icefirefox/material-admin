@@ -15,7 +15,15 @@ const TemplateDownloadButton: React.FC<TemplateDownloadButtonProps> = ({
     variant="text"
     size="small"
     startIcon={<DownloadIcon />}
-    sx={{ textTransform: 'capitalize', ml: 1, maxHeight: 27.5, }}
+
+    sx={{
+      textTransform: 'capitalize', ml: 1, maxHeight: 27.5, '&.MuiButton-root': {
+        top: '-5px', marginLeft: '0' // 调整按钮位置;
+      }, '& span': {
+
+        marginRight: '2px', marginLeft: '0',
+      }
+    }}
     component="a"
     href={href}
     download

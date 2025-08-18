@@ -1,6 +1,9 @@
 // src/App.js
 import * as React from "react";
-import { Admin, Resource, ListGuesser, fetchUtils } from "react-admin";
+// import { Admin, Resource, ListGuesser, fetchUtils, CustomRoutes, Route } from "react-admin";
+import { Admin, Resource, ListGuesser, fetchUtils, CustomRoutes } from "react-admin";
+import { Route } from 'react-router-dom';
+// ...其他代码...
 import simpleRestProvider from "ra-data-simple-rest";
 import authProvider from "./authProvider";
 import MaterialList from "./pages/Material/MaterialList";
@@ -18,6 +21,13 @@ import CustomLayoutWrapper from './components/CustomLayoutWrapper.tsx';
 import BomList from "./pages/BOM/BomList.tsx";
 import BomCreate from "./pages/BOM/BomCreate.tsx";
 import BomEdit from "./pages/BOM/BomEdit.tsx";
+import BomChartPage from "./pages/BOM/BomChartPage.tsx";
+import SalesChartPage from "./pages/Sales/SalesChartPage.tsx";
+import SalesList from "./pages/Sales/SalesList.tsx";
+import SalesCreate from "./pages/Sales/SalesCreate.tsx";
+import SalesEdit from "./pages/Sales/SalesEdit.tsx";
+
+
 import './App.css';
 import theme from "./theme";
 const fetchJsonWithAuth = (url, options = {}) => {
@@ -71,10 +81,21 @@ const App = () => (
       list={BomList}
       create={BomCreate}
       edit={BomEdit} />
+    {/* 你可以在这里注册自定义路由 */}
+    <CustomRoutes>
+      <Route path="/bom/:id/chart" element={<BomChartPage />} />
+    </CustomRoutes>
+    <CustomRoutes>
+      <Route path="/sales/chart" element={<SalesChartPage />} />
+    </CustomRoutes>
+    <Resource icon={ReceiptLongIcon} list={(props) => (
+      <CustomLayoutWrapper>
+        <SalesList {...props} />
+      </CustomLayoutWrapper>
+    )} create={SalesCreate} edit={SalesEdit} name="Sales" options={{ label: "Sales Order" }} />
+    <Resource icon={AssignmentIcon} name="MaterialRequest" options={{ label: "Material Request" }} list={ListGuesser} />
 
     <Resource icon={WarehouseIcon} name="Stock" list={ListGuesser} />
-    <Resource icon={ReceiptLongIcon} name="Sales" options={{ label: "Sales Order" }} list={ListGuesser} />
-    <Resource icon={AssignmentIcon} name="MaterialRequest" options={{ label: "Material Request" }} list={ListGuesser} />
     <Resource icon={BusinessIcon} name="Supplier" options={{ label: "Supplier" }} list={ListGuesser} />
 
 

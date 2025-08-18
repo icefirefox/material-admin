@@ -33,7 +33,7 @@ const MaterialCreate: React.FC = () => {
 
   return (
     <CreateBase resource="materials">
-      <SimpleForm onSubmit={handleSave}>
+      <SimpleForm sx={{ backgroundColor: '#ffffff', padding: '36px' }} onSubmit={handleSave}>
         <Box display="flex" flexWrap="wrap" gap={2}>
           <Box flex="1 1 48%">
             <TextInput source="productId" label="Material Code" fullWidth />
@@ -52,7 +52,7 @@ const MaterialCreate: React.FC = () => {
             />
           </Box>
           <Box flex="1 1 48%">
-            <TextInput source="unit" label="Unit" fullWidth />
+            <TextInput sx={{ mt: 1 }} source="unit" label="Unit" fullWidth />
           </Box>
           <Box flex="1 1 48%">
             <TextInput source="size" label="Size" fullWidth />

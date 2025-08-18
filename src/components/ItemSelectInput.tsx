@@ -33,13 +33,14 @@ const ItemSelectInput: React.FC<ItemSelectInputProps> = ({
         optionText="name"
         validate={[required()]}
         filterToQuery={searchText => ({ name: searchText })}
-        parse={id => {
-          const found = formattedChoices.find(c => c.id === id);
-          return found ? found.raw : undefined;
+        parse={value => {
+          if (!value) return undefined;
+          if (typeof value === 'object') return value.productId || value.id;
+          return value;
         }}
         format={value => {
           if (!value) return '';
-          if (typeof value === 'object') return value.productId || value.id || '';
+          if (typeof value === 'object') return value.productId || value.id;
           return value;
         }}
         sx={{

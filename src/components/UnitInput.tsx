@@ -19,7 +19,7 @@ const UnitInput = ({ source }) => {
   const unit = material?.unit || "";
 
   return (
-    <div style={{ width: '100%', display: 'flex', alignItems: 'center', marginTop: -16 }}>
+    <div style={{ width: '100%', display: 'flex', alignItems: 'center', marginTop: -15 }}>
       <label
         style={{
           minWidth: 30,
@@ -36,7 +36,7 @@ const UnitInput = ({ source }) => {
           // flexGrow: 1,
           padding: '6px 12px',
           border: '1px solid #ccc',
-          borderRadius: '4px',
+          borderRadius: '6px',
           backgroundColor: '#f9f9f9',
           minHeight: '50px',
           maxHeight: '50px',
