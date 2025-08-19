@@ -63,11 +63,11 @@ const MultiProductLineChart: React.FC<Props> = ({ data, height = 400, dark = fal
     const option: echarts.EChartsOption = {
       backgroundColor: dark ? "#181c27" : "#fff",
       tooltip: { trigger: "axis" },
-      legend: {
-        top: 10,
-        textStyle: { color: dark ? "#fff" : "#222", fontWeight: 500, fontSize: 14 },
-        icon: "circle",
-      },
+      // legend: {
+      //   top: 10,
+      //   textStyle: { color: dark ? "#fff" : "#222", fontWeight: 500, fontSize: 14 },
+      //   icon: "circle",
+      // },
       grid: { top: 50, right: 30, bottom: 40, left: 50 },
       xAxis: {
         type: "category",

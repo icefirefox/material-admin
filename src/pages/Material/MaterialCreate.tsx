@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 const typeChoices = [
   { id: 'FinishedGood', name: '成品' },
   { id: 'RawMaterial', name: '原料' },
+  { id: 'PackagingMaterial', name: '包装材料' },
 ];
 
 const MaterialCreate: React.FC = () => {

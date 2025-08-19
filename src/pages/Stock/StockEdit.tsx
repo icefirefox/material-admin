@@ -13,7 +13,7 @@ import Box from "@mui/material/Box";
 import ItemSelectInput from '../../components/ItemSelectInput.tsx';
 import { useParams } from 'react-router-dom';
 
-const SalesEdit: React.FC = () => {
+const StockEdit: React.FC = () => {
   const dataProvider = useDataProvider();
   const [finishedGoods, setFinishedGoods] = useState<any[]>([]);
   const [rawMaterials, setRawMaterials] = useState<any[]>([]);
@@ -54,7 +54,7 @@ const SalesEdit: React.FC = () => {
   return (
     <Edit mutationMode="pessimistic">
       <SimpleForm sx={{ backgroundColor: '#ffffff', padding: '36px' }}>
-        <Box display="flex" flexWrap="wrap" gap={2}>
+        <Box display="flex" width='100%' gap={2}>
           <Box flex="1 1 48%">
             <ItemSelectInput
               sx={{
@@ -73,22 +73,16 @@ const SalesEdit: React.FC = () => {
               choices={finishedGoods}
             />
           </Box>
-          <Box flex="1 1 48%">
-            <TextInput sx={{ mt: 1 }} source="orderNo" label="订单编号" fullWidth />
-          </Box>
-          <Box flex="1 1 48%">
-            <TextInput sx={{ mt: 1 }} source="unit" label="Unit" fullWidth />
-          </Box>
+
+
           <Box flex="1 1 48%">
             <TextInput sx={{ mt: 1 }} source="quantity" label="Quantity" fullWidth />
           </Box>
-          <Box flex="1 1 48%">
-            <DateInput source="orderDate" label="订单时间" fullWidth />
-          </Box>
+
         </Box>
       </SimpleForm>
     </Edit>
   );
 };
 
-export default SalesEdit;
+export default StockEdit;

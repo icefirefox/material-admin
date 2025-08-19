@@ -99,7 +99,7 @@ const MaterialList = (props) => (
             label="Type"
             render={record =>
               record.type === "FinishedGood" ? "FinishedGood" :
-                record.type === "RawMaterial" ? "RawMaterial" : "-"
+                record.type === "RawMaterial" ? "RawMaterial" : record.type === "PackagingMaterial" ? "PackagingMaterial" : "-"
             }
           />
           <TextField source="unit" />

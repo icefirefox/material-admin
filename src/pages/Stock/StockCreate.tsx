@@ -21,7 +21,7 @@ const typeChoices = [
   { id: 'RawMaterial', name: '原料' },
 ];
 
-const SalesCreate: React.FC = () => {
+const StockCreate: React.FC = () => {
   const dataProvider = useDataProvider();
 
   const [finishedGoods, setFinishedGoods] = useState<any[]>([]);
@@ -61,9 +61,9 @@ const SalesCreate: React.FC = () => {
 
   const handleSave = async (data: any) => {
     try {
-      await create('sales', { data });
+      await create('stock', { data });
       notify('保存成功', { type: 'info' });
-      redirect('list', 'sales');
+      redirect('list', 'stock');
     } catch (error) {
       notify('保存失败', { type: 'error' });
     }
@@ -79,7 +79,7 @@ const SalesCreate: React.FC = () => {
       };
     }}>
       <SimpleForm sx={{ backgroundColor: '#ffffff', padding: '36px' }} onSubmit={handleSave}>
-        <Box display="flex" flexWrap="wrap" gap={2}>
+        <Box display="flex" flexDirection="row" gap={2} width="100%" >
           <Box flex="1 1 48%">
             {/* FinishedGood 选项传入 */}
             <ItemSelectInput sx={{
@@ -93,24 +93,17 @@ const SalesCreate: React.FC = () => {
                 minHeight: 50,
                 height: 50,
                 alignItems: 'center',
-              },
+              }, width: '100%',
             }} source="productId" type="FinishedGood" choices={finishedGoods} />          </Box>
-          <Box flex="1 1 48%">
-            <TextInput sx={{ mt: 1 }} source="orderNo" label="订单编号" fullWidth />
-          </Box>
-          <Box flex="1 1 48%">
-            <TextInput sx={{ mt: 1 }} source="unit" label="Unit" fullWidth />
-          </Box>
+
           <Box flex="1 1 48%">
             <TextInput sx={{ mt: 1 }} source="quantity" label="Quantity" fullWidth />
           </Box>
-          <Box flex="1 1 48%">
-            <DateInput source="orderDate" label="订单时间" fullWidth />
-          </Box>
+
         </Box>
       </SimpleForm>
     </CreateBase>
   );
 };
 
-export default SalesCreate;
+export default StockCreate;

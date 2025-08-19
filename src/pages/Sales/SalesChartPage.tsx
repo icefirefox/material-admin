@@ -99,14 +99,31 @@ function aggregatePivot(
 const SalesChartPage: React.FC = () => {
   const [mode, setMode] = useState<'day' | 'week' | 'month'>('day');
 
-  // 你的 sampleData（按日的透视表）
-  const sampleData: PivotRow[] = [
-    { date: '2025-08-01', 产品A: 120, 产品B: 200, 产品C: 90, 产品D: 80 },
-    { date: '2025-08-02', 产品A: 150, 产品B: 180, 产品C: 130, 产品D: 80 },
-    { date: '2025-08-03', 产品A: 170, 产品B: 240, 产品C: 160, 产品D: 90 },
-    { date: '2025-08-04', 产品A: 190, 产品B: 260, 产品C: 200, 产品D: 100 },
-    { date: '2025-08-05', 产品A: 220, 产品B: 280, 产品C: 210, 产品D: 170 },
-  ];
+  // sampleData（按日的透视表）
+  // const sampleData: PivotRow[] = [
+  //   { date: '2025-08-01', 'Nouriz Healtra Stage 1 800g Can': 120, 'Nouriz Healtra Stage 2 800g Can': 200, 'Nouriz Healtra Stage 3 800g Can': 90, 'Nouriz Healtra Stage 4 800g Can': 80 },
+  //   { date: '2025-08-02', 产品A: 150, 产品C: 130, 产品D: 80 },
+  //   { date: '2025-08-03', 产品A: 170, 产品B: 240, 产品C: 160, 产品D: 90 },
+  //   { date: '2025-08-04', 产品A: 190, 产品B: 260, 产品D: 100 },
+  //   { date: '2025-08-05', 产品A: 220, 产品B: 280, 产品C: 210, 产品D: 170 },
+  // ];
+  const token = localStorage.getItem('token');
+  const API_URL = process.env.API_URL || 'http://localhost:5180/api';
+
+  const [sampleData, setSampleData] = useState<PivotRow[]>([]);
+
+  // 从接口获取数据
+  React.useEffect(() => {
+    fetch(`${API_URL}/sales/items`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => setSampleData(data))
+      .catch(() => setSampleData([]));
+  }, []);
 
   const chartData = useMemo(() => aggregatePivot(sampleData, mode), [mode, sampleData]);
 

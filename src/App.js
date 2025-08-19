@@ -26,7 +26,9 @@ import SalesChartPage from "./pages/Sales/SalesChartPage.tsx";
 import SalesList from "./pages/Sales/SalesList.tsx";
 import SalesCreate from "./pages/Sales/SalesCreate.tsx";
 import SalesEdit from "./pages/Sales/SalesEdit.tsx";
-
+import StockList from "./pages/Stock/StockList.tsx";
+import StockCreate from "./pages/Stock/StockCreate.tsx";
+import StockEdit from "./pages/Stock/StockEdit.tsx";
 
 import './App.css';
 import theme from "./theme";
@@ -93,10 +95,14 @@ const App = () => (
         <SalesList {...props} />
       </CustomLayoutWrapper>
     )} create={SalesCreate} edit={SalesEdit} name="Sales" options={{ label: "Sales Order" }} />
-    <Resource icon={AssignmentIcon} name="MaterialRequest" options={{ label: "Material Request" }} list={ListGuesser} />
 
-    <Resource icon={WarehouseIcon} name="Stock" list={ListGuesser} />
+    <Resource create={StockCreate} edit={StockEdit} icon={WarehouseIcon} name="Stock" list={(props) => (
+      <CustomLayoutWrapper>
+        <StockList {...props} />
+      </CustomLayoutWrapper>
+    )} />
     <Resource icon={BusinessIcon} name="Supplier" options={{ label: "Supplier" }} list={ListGuesser} />
+    <Resource icon={AssignmentIcon} name="MaterialRequest" options={{ label: "Material Request" }} list={ListGuesser} />
 
 
 
